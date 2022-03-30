@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '6.11'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: "4.4.0"
+}
+
+tasks.register("setUpProperty") {
+    System.setProperty("base-url", "https://www.tutorialspoint.com/selenium/selenium_automation_practice.htm")
+}
+
+task uiTests(type: Test) {
+    dependsOn(setUpProperty)
+    useTestNG() {
+        suites 'src/test/resources/ui_all_tests.xml'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

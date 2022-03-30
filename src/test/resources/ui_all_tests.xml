@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="All ui test suite" parallel="tests" thread-count="1">
+    <test name="Selenium - Automation Practice Form tests">
+        <classes>
+            <class name="com.ui.tests.practiceFormTest"/>
+        </classes>
+    </test>
+</suite>
